@@ -1,0 +1,42 @@
+<ion-row>
+  <ion-col id="job">
+    <ion-icon aira-hidden="true"  name="briefcase"></ion-icon>
+    <section>{{job ? job : "Sin trabajo"}}</section>
+  </ion-col>
+  <ion-col id="loc">
+    <ion-icon aira-hidden="true"  name="location"></ion-icon>
+    <section>{{location ? location : "Sin ubicación"}}</section>
+  </ion-col>
+  <ion-col id="hour1">
+    <ion-icon aira-hidden="true"  name="log-in"></ion-icon>
+    <section>{{inHour ? inHour : "Sin hora de entrada"}}</section>
+  </ion-col>
+  <ion-col id="hour2">
+    <ion-icon aira-hidden="true"  name="log-out"></ion-icon>
+    <section>{{outHour ? outHour : "Sin hora de salida"}}</section>
+  </ion-col>
+</ion-row>
+    
+<ion-popover trigger="job" triggerAction="click">
+  <ng-template>
+    <ion-content class="ion-padding">Trabajo asignado</ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover trigger="loc" triggerAction="click">
+  <ng-template>
+    <ion-content class="ion-padding">Geolocalización</ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover trigger="hour1" triggerAction="click">
+  <ng-template>
+    <ion-content class="ion-padding">Hora de entrada</ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover trigger="hour2" triggerAction="click">
+  <ng-template>
+    <ion-content class="ion-padding">Hora de salida</ion-content>
+  </ng-template>
+</ion-popover>

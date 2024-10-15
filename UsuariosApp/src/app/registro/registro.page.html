@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Registro de fichaje
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,14 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Registro de fichaje</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  @if (true) {
+    <app-empezar-trabajo></app-empezar-trabajo>
+  } @else {
+    <app-terminar-trabajo></app-terminar-trabajo>
+  }
+  
 </ion-content>

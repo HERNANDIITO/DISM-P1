@@ -1,0 +1,14 @@
+ion-col {
+    justify-content: center;
+    display: flex;
+    flex-flow: row;
+    gap: 15px;
+    section {
+        width: fit-content;
+        display: inline;
+    }
+}
+
+section {
+    text-align: center;
+}

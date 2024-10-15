@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Consulta de fichajes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Consulta de fichajes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row class="header-row">
+      <ion-col>
+        <section>Trabajo asignado</section>
+      </ion-col>
+      <ion-col>
+        <section>Ubicación</section>
+      </ion-col>
+      <ion-col>
+        <section>Hora de entrada</section>
+      </ion-col>
+      <ion-col>
+        <section>Hora de salida</section>
+      </ion-col>
+    </ion-row>
+    <app-registro-component
+      [job]="'Programar'"
+      [inHour]="'14:00'"
+      [outHour]="'20:00'"
+      [location]="'Mi casa'">
+    </app-registro-component>
+  </ion-grid>
+
+</ion-content>
