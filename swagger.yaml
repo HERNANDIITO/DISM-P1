@@ -1,0 +1,548 @@
+openapi: 3.0.3
+info:
+  title: Sistema fichajes - OpenAPI 3.0
+  version: 0.1.0
+servers:
+  - url: https://lohaclhost:4200
+tags:
+  - name: usuarios
+    description: Servicios relacionados con los usuarios
+  - name: trabajos
+    description: Operations about user
+  - name: fichajes
+    description: Servicios relacionados con los fichajes
+  - name: apiKey
+    description: Operations about user
+paths:
+  /user:
+    get:
+      tags:
+        - usuarios
+      summary: Recoge un usuario dada la ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del usuario en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Usuario no válido
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - usuarios
+      summary: Crea un usuario nuevo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Usuario no válido
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - usuarios
+      summary: Actualizar usuario dada su ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: ID inválida
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - usuarios
+      summary: Eliminar usuario dada su ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del usuario en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+        '400':
+          description: ID inválida
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del servidor
+  /work:
+    get:
+      tags:
+        - trabajos
+      summary: Recoge un trabajo dada la ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del trabajo en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+        '400':
+          description: Trabajo no válido
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - trabajos
+      summary: Crea un trabajo nuevo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewWork'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+        '400':
+          description: Trabajo no válido
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - trabajos
+      summary: Actualizar trabajo dada su ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Work'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: ID inválida
+        '404':
+          description: Trabajo no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - trabajos
+      summary: Eliminar trabajo dada su ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del trabajo en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+        '400':
+          description: ID inválida
+        '404':
+          description: Trabajo no encontrado
+        '500':
+          description: Error del servidor
+  /fichajes:
+    get:
+      tags:
+        - fichajes
+      summary: Recoge un fichaje dada la ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del fichaje en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fichaje'
+        '400':
+          description: Fichaje no válido
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - fichajes
+      summary: Crea un fichaje nuevo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewFichaje'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fichaje'
+        '400':
+          description: Fichaje no válido
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - fichajes
+      summary: Actualizar fichaje dada su ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fichaje'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fichaje'
+        '400':
+          description: ID inválida
+        '404':
+          description: Fichaje no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - fichajes
+      summary: Eliminar fichaje dada su ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del fichaje en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+        '400':
+          description: ID inválida
+        '404':
+          description: Fichaje no encontrado
+        '500':
+          description: Error del servidor
+  /apiKey:
+    get:
+      tags:
+        - apiKey
+      summary: Recoge un apiKey dada la ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del apiKey en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: ApiKey no válida
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - apiKey
+      summary: Crea un apiKey nuevo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: ApiKey no válido
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - apiKey
+      summary: Actualizar apiKey dada su ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKey'
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '400':
+          description: ID inválida
+        '404':
+          description: ApiKey no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - apiKey
+      summary: Eliminar apiKey dada su ID
+      parameters:
+        - name: userID
+          in: query
+          description: ID del apiKey en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+        '400':
+          description: ID inválida
+        '404':
+          description: ApiKey no encontrado
+        '500':
+          description: Error del servidor
+  /getFichajes:
+    get:
+      tags:
+        - fichajes
+      summary: Recoge todos los fichajes disponibles
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayFichajes'
+        '500':
+          description: Error del servidor
+  /getUserFichajes:
+    get:
+      tags:
+        - fichajes
+        - usuarios
+      summary: Recoge todos los fichajes de un usuario
+      parameters:
+        - name: userID
+          in: query
+          description: ID del usuario en cuestión
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayFichajes'
+        '400':
+          description: Usuario no válido
+        '500':
+          description: Error del servidor
+  /getWorks:
+    get:
+      tags:
+        - trabajos
+      summary: Recoge todos los trabajos disponibles
+      responses:
+        '200':
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayWorks'
+        '500':
+          description: Error del servidor
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        nombre:
+          type: string
+          example: "Pablo"
+        usuario:
+          type: string
+          example: "PabloABC123"
+        clave:
+          type: string
+          example: "PabloABC123"
+      xml:
+        name: user
+
+    Work:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        nombre:
+          type: string
+          example: "Pablo"
+      xml:
+        name: user
+    
+    Fichaje:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        FechaHoraEntrada:
+          type: number
+          example: 1023487875567854
+        FechaHoraSalida:
+          type: number
+          example: 1023487875876587
+        HorasTrabajadas:
+          type: number
+          example: 8
+        IdTrabajo:
+          type: integer
+          example: 1110
+        IdUsuario:
+          type: integer
+          example: 1001
+        GeolocalizacionLatitud:
+          type: number
+          example: 1.2398472987
+        GeolocalizacionLongitud:
+          type: number
+          example: 1.3948713928
+      xml:
+        name: user
+    
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        key:
+          type: string
+          example: "wdajhgcvwefxesCDFEWcewfjchbfewcsaDcw"
+      xml:
+        name: user
+
+    NewUser:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: "Pablo"
+        usuario:
+          type: string
+          example: "PabloABC123"
+        clave:
+          type: string
+          example: "PabloABC123"
+      xml:
+        name: user
+    
+    NewWork:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: "Pablo"
+      xml:
+        name: user
+    
+    NewFichaje:
+      type: object
+      properties:
+        FechaHoraEntrada:
+          type: number
+          example: 1023487875567854
+        FechaHoraSalida:
+          type: number
+          example: 1023487875876587
+        HorasTrabajadas:
+          type: number
+          example: 8
+        IdTrabajo:
+          type: integer
+          example: 1110
+        IdUsuario:
+          type: integer
+          example: 1001
+        GeolocalizacionLatitud:
+          type: number
+          example: 1.2398472987
+        GeolocalizacionLongitud:
+          type: number
+          example: 1.3948713928
+      xml:
+        name: user
+    
+    ArrayFichajes:
+      type: array
+      items:
+        $ref: "#/components/schemas/Fichaje" 
+    
+    ArrayUsers:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+    
+    ArrayWorks:
+      type: array
+      items:
+        $ref: "#/components/schemas/Work"
+      
