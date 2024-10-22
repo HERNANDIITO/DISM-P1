@@ -1,0 +1,21 @@
+.add-button {
+    display: block;
+    margin: auto;
+    margin-top: 8px;
+    width: fit-content;
+}
+
+ion-col {
+    padding: 0;
+    min-height: 44px;
+    justify-content: center;
+    display: flex;
+    flex-flow: column
+}
+
+.button-wrapper {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    width: 100%;
+}
