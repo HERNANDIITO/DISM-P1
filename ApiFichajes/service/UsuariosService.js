@@ -1,43 +1,6 @@
 "use strict";
 
-/**
- * Recoge todos los fichajes de un usuario
- *
- * userID Integer ID del usuario en cuestión
- * returns ArrayFichajes
- **/
-exports.getUserFichajesGET = function (userID) {
-  return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = [
-      {
-        GeolocalizacionLatitud: 1.2398472987,
-        GeolocalizacionLongitud: 1.3948713928,
-        IdUsuario: 1001,
-        FechaHoraEntrada: 1023487875567854,
-        id: 10,
-        FechaHoraSalida: 1023487875876587,
-        IdTrabajo: 1110,
-        HorasTrabajadas: 8,
-      },
-      {
-        GeolocalizacionLatitud: 1.2398472987,
-        GeolocalizacionLongitud: 1.3948713928,
-        IdUsuario: 1001,
-        FechaHoraEntrada: 1023487875567854,
-        id: 10,
-        FechaHoraSalida: 1023487875876587,
-        IdTrabajo: 1110,
-        HorasTrabajadas: 8,
-      },
-    ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-};
+const connection = require("../controllers/db_connection")
 
 /**
  * Eliminar usuario dada su ID
@@ -47,7 +10,13 @@ exports.getUserFichajesGET = function (userID) {
  **/
 exports.userDELETE = function (userID) {
   return new Promise(function (resolve, reject) {
-    resolve();
+    connection.query(`DELETE FROM usuarios WHERE IdUsuario = '${userID}'`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        resolve(results.affectedRows >= 1 ? { result: true } : { result: false });
+      }
+    });
   });
 };
 
@@ -59,18 +28,13 @@ exports.userDELETE = function (userID) {
  **/
 exports.userGET = function (userID) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = {
-      clave: "PabloABC123",
-      usuario: "PabloABC123",
-      id: 10,
-      nombre: "Pablo",
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    connection.query(`SELECT * FROM usuarios WHERE IdUsuario = '${userID}'`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        resolve(results[0]);
+      }
+    });
   });
 };
 
@@ -82,18 +46,19 @@ exports.userGET = function (userID) {
  **/
 exports.userPOST = function (body) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = {
-      clave: "PabloABC123",
-      usuario: "PabloABC123",
-      id: 10,
-      nombre: "Pablo",
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    connection.query(`INSERT INTO usuarios (Nombre, Usuario, Clave) VALUES ('${body.nombre}', '${body.usuario}', '${body.clave}')`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        connection.query(`SELECT * FROM usuarios WHERE IdUsuario = '${results.insertId}'`, function(error, results, fields) {
+          if (error) {
+            reject({ message: error });
+          } else {
+            resolve(results[0]);
+          }
+        });
+      }
+    });
   });
 };
 
@@ -105,17 +70,18 @@ exports.userPOST = function (body) {
  **/
 exports.userPUT = function (body) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = {
-      clave: "PabloABC123",
-      usuario: "PabloABC123",
-      id: 10,
-      nombre: "Pablo",
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    connection.query(`UPDATE usuarios SET Nombre='${body.nombre}', Usuario='${body.usuario}', Clave='${body.clave}' WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        connection.query(`SELECT * FROM usuarios WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+          if (error) {
+            reject({ message: error });
+          } else {
+            resolve(results[0]);
+          }
+        });
+      }
+    });
   });
 };

@@ -422,7 +422,6 @@ paths:
     get:
       tags:
       - fichajes
-      - usuarios
       summary: Recoge todos los fichajes de un usuario
       operationId: getUserFichajesGET
       parameters:
