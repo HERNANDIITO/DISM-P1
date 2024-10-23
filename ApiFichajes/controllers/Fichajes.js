@@ -72,3 +72,18 @@ module.exports.getUserFichajesGET = function getUserFichajesGET(
       utils.writeJson(res, response);
     });
 };
+
+module.exports.getLastUsuFichaje = function getLastUsuFichaje(
+  req,
+  res,
+  next,
+  userID
+) {
+  Fichajes.getLastUsuFichaje(userID)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};

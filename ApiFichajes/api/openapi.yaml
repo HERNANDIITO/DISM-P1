@@ -418,6 +418,31 @@ paths:
         "500":
           description: Error del servidor
       x-swagger-router-controller: Fichajes
+  /getLastUsuFichaje:
+    get:
+      tags:
+      - fichajes
+      summary: Recoge el fichaje más reciente del usuario
+      operationId: getLastUsuFichaje
+      parameters:
+      - name: userID
+        in: query
+        description: ID del user en cuestión
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayFichajes'
+        "500":
+          description: Error del servidor
+      x-swagger-router-controller: Fichajes
   /getUserFichajes:
     get:
       tags:

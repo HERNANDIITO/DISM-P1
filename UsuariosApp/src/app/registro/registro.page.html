@@ -13,10 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
-  @if (true) {
-    <app-empezar-trabajo></app-empezar-trabajo>
+  @if ( working ) {
+    <app-terminar-trabajo [fichaje]="lastFichaje"></app-terminar-trabajo>
   } @else {
-    <app-terminar-trabajo></app-terminar-trabajo>
+    <app-empezar-trabajo></app-empezar-trabajo>
   }
   
 </ion-content>

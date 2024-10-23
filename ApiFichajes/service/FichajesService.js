@@ -44,13 +44,13 @@ exports.fichajesGET = function (fichajeID) {
  * body NewFichaje  (optional)
  * returns Fichaje
  **/
-exports.fichajesPOST = function (body) {
+exports.fichajesPOST = function (body) {  
   return new Promise(function (resolve, reject) {
     connection.query(`INSERT INTO fichajes (FechaHoraEntrada, FechaHoraSalida, HorasTrabajadas, IdTrabajo, IdUsuario, GeolocalizacionLatitud, GeolocalizacionLongitud)VALUES('${body.FechaHoraEntrada}', '${body.FechaHoraSalida}', '${body.HorasTrabajadas}', '${body.IdTrabajo}', '${body.IdUsuario}', '${body.GeolocalizacionLatitud}', '${body.GeolocalizacionLongitud}')`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${results.insertId}'`, function(error, results, fields) {
+        connection.query(`SELECT * FROM fichajes WHERE IdFichaje = '${results.insertId}'`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
@@ -69,6 +69,7 @@ exports.fichajesPOST = function (body) {
  * returns Fichaje
  **/
 exports.fichajesPUT = function (body) {
+  console.log("PUT");
   return new Promise(function (resolve, reject) {
     connection.query(`UPDATE fichajes SET FechaHoraEntrada='${body.FechaHoraEntrada}', FechaHoraSalida='${body.FechaHoraSalida}', HorasTrabajadas='${body.HorasTrabajadas}', IdTrabajo='${body.IdTrabajo}', IdUsuario='${body.IdUsuario}', GeolocalizacionLatitud='${body.GeolocalizacionLatitud}', GeolocalizacionLongitud='${body.GeolocalizacionLongitud}'`, function(error, results, fields) {
       if (error) {
@@ -112,6 +113,24 @@ exports.getFichajesGET = function () {
 exports.getUserFichajesGET = function (userID) {
   return new Promise(function (resolve, reject) {
     connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${userID}'`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        resolve(results[0] ? results[0] : {});
+      }
+    });
+  });
+};
+
+/**
+ * Recoge todos los fichajes de un usuario
+ *
+ * fichajeID Integer ID del usuario en cuestión
+ * returns ArrayFichajes
+ **/
+exports.getLastUsuFichaje = function (userID) {
+  return new Promise(function (resolve, reject) {
+    connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${userID}' ORDER BY FechaHoraEntrada DESC LIMIT 1`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {

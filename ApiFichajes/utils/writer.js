@@ -36,6 +36,13 @@ var writeJson = (exports.writeJson = function (response, arg1, arg2) {
   if (typeof payload === "object") {
     payload = JSON.stringify(payload, null, 2);
   }
-  response.writeHead(code, { "Content-Type": "application/json" });
+  response.writeHead(code, {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,POST,PUT,OPTIONS,DELETE,UPDATE,HEAD',
+    'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Max-Age': 1000
+  });
   response.end(payload);
 });

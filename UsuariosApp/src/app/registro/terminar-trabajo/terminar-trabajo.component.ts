@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Fichaje } from 'src/app/interfaces/fichaje';
+import { FichajeService } from 'src/app/services/fichaje.service';
 
 @Component({
   selector: 'app-terminar-trabajo',
@@ -10,8 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TerminarTrabajoComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private fichajeService: FichajeService) { }
+
+  @Input() fichaje?: Fichaje
 
   ngOnInit() {}
+
+  cerrarFichaje() {
+    if (!this.fichaje) { return }
+
+    this.fichaje.FechaHoraSalida = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    this.fichajeService.updateFichaje(this.fichaje).subscribe( res => {console.log(res);} )
+    
+    
+  }
 
 }
