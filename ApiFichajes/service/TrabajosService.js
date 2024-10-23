@@ -49,7 +49,7 @@ exports.workGET = function (workID) {
       if (error) {
         reject({ message: error });
       } else {
-        resolve(results[0]);
+        resolve(results[0] ? results[0] : {});
       }
     });
   });
@@ -71,7 +71,7 @@ exports.workPOST = function (body) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0]);
+            resolve(results[0] ? results[0] : {});
           }
         });
       }
@@ -87,15 +87,15 @@ exports.workPOST = function (body) {
  **/
 exports.workPUT = function (body) {
   return new Promise(function (resolve, reject) {
-    connection.query(`UPDATE trabajo SET Nombre='${body.nombre}' WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+    connection.query(`UPDATE trabajos SET Nombre='${body.nombre}' WHERE IdTrabajo = '${body.id}'`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM trabajo WHERE IdTrabajo = '${body.id}'`, function(error, results, fields) {
+        connection.query(`SELECT * FROM trabajos WHERE IdTrabajo = '${body.id}'`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0]);
+            resolve(results[0] ? results[0] : {});
           }
         });
       }

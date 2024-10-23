@@ -118,7 +118,7 @@ paths:
       summary: Recoge un trabajo dada la ID
       operationId: workGET
       parameters:
-      - name: userID
+      - name: workID
         in: query
         description: ID del trabajo en cuestión
         required: true
@@ -154,7 +154,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Work'
         "400":
           description: ID inválida
         "404":
@@ -190,7 +190,7 @@ paths:
       summary: Eliminar trabajo dada su ID
       operationId: workDELETE
       parameters:
-      - name: userID
+      - name: workID
         in: query
         description: ID del trabajo en cuestión
         required: true
@@ -215,7 +215,7 @@ paths:
       summary: Recoge un fichaje dada la ID
       operationId: fichajesGET
       parameters:
-      - name: userID
+      - name: fichajeID
         in: query
         description: ID del fichaje en cuestión
         required: true
@@ -287,7 +287,7 @@ paths:
       summary: Eliminar fichaje dada su ID
       operationId: fichajesDELETE
       parameters:
-      - name: userID
+      - name: fichajeID
         in: query
         description: ID del fichaje en cuestión
         required: true
@@ -312,7 +312,7 @@ paths:
       summary: Recoge un apiKey dada la ID
       operationId: apiKeyGET
       parameters:
-      - name: userID
+      - name: apiKeyID
         in: query
         description: ID del apiKey en cuestión
         required: true
@@ -384,7 +384,7 @@ paths:
       summary: Eliminar apiKey dada su ID
       operationId: apiKeyDELETE
       parameters:
-      - name: userID
+      - name: apiKeyID
         in: query
         description: ID del apiKey en cuestión
         required: true
@@ -506,11 +506,11 @@ components:
           type: integer
           example: 10
         FechaHoraEntrada:
-          type: number
-          example: 1023487875567854
+          type: string
+          example: "2024-02-01 00:00:01"
         FechaHoraSalida:
-          type: number
-          example: 1023487875876587
+          type: string
+          example: "2024-02-01 00:00:01"
         HorasTrabajadas:
           type: number
           example: 8
@@ -530,9 +530,9 @@ components:
         GeolocalizacionLatitud: 1.2398472987
         GeolocalizacionLongitud: 1.3948713928
         IdUsuario: 1001
-        FechaHoraEntrada: 1023487875567854
+        FechaHoraEntrada: "2024-02-01 00:00:01"
         id: 10
-        FechaHoraSalida: 1023487875876587
+        FechaHoraSalida: "2024-02-01 00:00:01"
         IdTrabajo: 1110
         HorasTrabajadas: 8
       xml:
@@ -577,11 +577,11 @@ components:
       type: object
       properties:
         FechaHoraEntrada:
-          type: number
-          example: 1023487875567854
+          type: string
+          example: "2024-02-01 00:00:01"
         FechaHoraSalida:
-          type: number
-          example: 1023487875876587
+          type: string
+          example: "2024-02-01 00:00:01"
         HorasTrabajadas:
           type: number
           example: 8

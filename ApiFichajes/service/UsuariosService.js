@@ -32,7 +32,7 @@ exports.userGET = function (userID) {
       if (error) {
         reject({ message: error });
       } else {
-        resolve(results[0]);
+        resolve(results[0] ? results[0] : {});
       }
     });
   });
@@ -54,7 +54,7 @@ exports.userPOST = function (body) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0]);
+            resolve(results[0] ? results[0] : {});
           }
         });
       }
@@ -78,7 +78,7 @@ exports.userPUT = function (body) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0]);
+            resolve(results[0] ? results[0] : {});
           }
         });
       }

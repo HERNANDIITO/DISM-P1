@@ -32,7 +32,7 @@ exports.fichajesGET = function (fichajeID) {
       if (error) {
         reject({ message: error });
       } else {
-        resolve(results[0]);
+        resolve(results[0] ? results[0] : {});
       }
     });
   });
@@ -46,15 +46,15 @@ exports.fichajesGET = function (fichajeID) {
  **/
 exports.fichajesPOST = function (body) {
   return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO usuarios (FechaHoraEntrada, FechaHoraSalida, HorasTrabajadas, IdTrabajo, IdUsuario, GeologalizaciónLatitud, GeolocalizacionLongitud) VALUES ('${body.nombre}', '${body.usuario}', '${body.clave}')`, function(error, results, fields) {
+    connection.query(`INSERT INTO fichajes (FechaHoraEntrada, FechaHoraSalida, HorasTrabajadas, IdTrabajo, IdUsuario, GeolocalizacionLatitud, GeolocalizacionLongitud)VALUES('${body.FechaHoraEntrada}', '${body.FechaHoraSalida}', '${body.HorasTrabajadas}', '${body.IdTrabajo}', '${body.IdUsuario}', '${body.GeolocalizacionLatitud}', '${body.GeolocalizacionLongitud}')`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM usuarios WHERE IdUsuario = '${results.insertId}'`, function(error, results, fields) {
+        connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${results.insertId}'`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0]);
+            resolve(results[0] ? results[0] : {});
           }
         });
       }
@@ -70,22 +70,19 @@ exports.fichajesPOST = function (body) {
  **/
 exports.fichajesPUT = function (body) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = {
-      GeolocalizacionLatitud: 1.2398472987,
-      GeolocalizacionLongitud: 1.3948713928,
-      IdUsuario: 1001,
-      FechaHoraEntrada: 1023487875567854,
-      id: 10,
-      FechaHoraSalida: 1023487875876587,
-      IdTrabajo: 1110,
-      HorasTrabajadas: 8,
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    connection.query(`UPDATE fichajes SET FechaHoraEntrada='${body.FechaHoraEntrada}', FechaHoraSalida='${body.FechaHoraSalida}', HorasTrabajadas='${body.HorasTrabajadas}', IdTrabajo='${body.IdTrabajo}', IdUsuario='${body.IdUsuario}', GeolocalizacionLatitud='${body.GeolocalizacionLatitud}', GeolocalizacionLongitud='${body.GeolocalizacionLongitud}'`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+          if (error) {
+            reject({ message: error });
+          } else {
+            resolve(results[0] ? results[0] : {});
+          }
+        });
+      }
+    });
   });
 };
 
@@ -96,34 +93,13 @@ exports.fichajesPUT = function (body) {
  **/
 exports.getFichajesGET = function () {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = [
-      {
-        GeolocalizacionLatitud: 1.2398472987,
-        GeolocalizacionLongitud: 1.3948713928,
-        IdUsuario: 1001,
-        FechaHoraEntrada: 1023487875567854,
-        id: 10,
-        FechaHoraSalida: 1023487875876587,
-        IdTrabajo: 1110,
-        HorasTrabajadas: 8,
-      },
-      {
-        GeolocalizacionLatitud: 1.2398472987,
-        GeolocalizacionLongitud: 1.3948713928,
-        IdUsuario: 1001,
-        FechaHoraEntrada: 1023487875567854,
-        id: 10,
-        FechaHoraSalida: 1023487875876587,
-        IdTrabajo: 1110,
-        HorasTrabajadas: 8,
-      },
-    ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    connection.query(`SELECT * FROM fichajes`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        resolve(results);
+      }
+    });
   });
 };
 
@@ -133,35 +109,14 @@ exports.getFichajesGET = function () {
  * fichajeID Integer ID del usuario en cuestión
  * returns ArrayFichajes
  **/
-exports.getUserFichajesGET = function (fichajeID) {
+exports.getUserFichajesGET = function (userID) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = [
-      {
-        GeolocalizacionLatitud: 1.2398472987,
-        GeolocalizacionLongitud: 1.3948713928,
-        IdUsuario: 1001,
-        FechaHoraEntrada: 1023487875567854,
-        id: 10,
-        FechaHoraSalida: 1023487875876587,
-        IdTrabajo: 1110,
-        HorasTrabajadas: 8,
-      },
-      {
-        GeolocalizacionLatitud: 1.2398472987,
-        GeolocalizacionLongitud: 1.3948713928,
-        IdUsuario: 1001,
-        FechaHoraEntrada: 1023487875567854,
-        id: 10,
-        FechaHoraSalida: 1023487875876587,
-        IdTrabajo: 1110,
-        HorasTrabajadas: 8,
-      },
-    ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${userID}'`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        resolve(results[0] ? results[0] : {});
+      }
+    });
   });
 };
