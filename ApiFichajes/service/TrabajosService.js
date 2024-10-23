@@ -1,29 +1,30 @@
-'use strict';
-
+"use strict";
 
 /**
  * Recoge todos los trabajos disponibles
  *
  * returns ArrayWorks
  **/
-exports.getWorksGET = function() {
-  return new Promise(function(resolve, reject) {
+exports.getWorksGET = function () {
+  return new Promise(function (resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-  "id" : 10,
-  "nombre" : "Pablo"
-}, {
-  "id" : 10,
-  "nombre" : "Pablo"
-} ];
+    examples["application/json"] = [
+      {
+        id: 10,
+        nombre: "Pablo",
+      },
+      {
+        id: 10,
+        nombre: "Pablo",
+      },
+    ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
   });
-}
-
+};
 
 /**
  * Eliminar trabajo dada su ID
@@ -31,12 +32,11 @@ exports.getWorksGET = function() {
  * userID Integer ID del trabajo en cuestión
  * no response value expected for this operation
  **/
-exports.workDELETE = function(userID) {
-  return new Promise(function(resolve, reject) {
+exports.workDELETE = function (userID) {
+  return new Promise(function (resolve, reject) {
     resolve();
   });
-}
-
+};
 
 /**
  * Recoge un trabajo dada la ID
@@ -44,21 +44,20 @@ exports.workDELETE = function(userID) {
  * userID Integer ID del trabajo en cuestión
  * returns Work
  **/
-exports.workGET = function(userID) {
-  return new Promise(function(resolve, reject) {
+exports.workGET = function (userID) {
+  return new Promise(function (resolve, reject) {
     var examples = {};
-    examples['application/json'] = {
-  "id" : 10,
-  "nombre" : "Pablo"
-};
+    examples["application/json"] = {
+      id: 10,
+      nombre: "Pablo",
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
   });
-}
-
+};
 
 /**
  * Crea un trabajo nuevo
@@ -66,21 +65,20 @@ exports.workGET = function(userID) {
  * body NewWork  (optional)
  * returns Work
  **/
-exports.workPOST = function(body) {
-  return new Promise(function(resolve, reject) {
+exports.workPOST = function (body) {
+  return new Promise(function (resolve, reject) {
     var examples = {};
-    examples['application/json'] = {
-  "id" : 10,
-  "nombre" : "Pablo"
-};
+    examples["application/json"] = {
+      id: 10,
+      nombre: "Pablo",
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
   });
-}
-
+};
 
 /**
  * Actualizar trabajo dada su ID
@@ -88,20 +86,19 @@ exports.workPOST = function(body) {
  * body Work  (optional)
  * returns User
  **/
-exports.workPUT = function(body) {
-  return new Promise(function(resolve, reject) {
+exports.workPUT = function (body) {
+  return new Promise(function (resolve, reject) {
     var examples = {};
-    examples['application/json'] = {
-  "clave" : "PabloABC123",
-  "usuario" : "PabloABC123",
-  "id" : 10,
-  "nombre" : "Pablo"
-};
+    examples["application/json"] = {
+      clave: "PabloABC123",
+      usuario: "PabloABC123",
+      id: 10,
+      nombre: "Pablo",
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
   });
-}
-
+};

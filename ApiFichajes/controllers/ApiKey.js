@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-var utils = require('../utils/writer.js');
-var ApiKey = require('../service/ApiKeyService');
+var utils = require("../utils/writer.js");
+var ApiKey = require("../service/ApiKeyService");
 
-module.exports.apiKeyDELETE = function apiKeyDELETE (req, res, next, userID) {
+module.exports.apiKeyDELETE = function apiKeyDELETE(req, res, next, userID) {
   ApiKey.apiKeyDELETE(userID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -13,7 +13,7 @@ module.exports.apiKeyDELETE = function apiKeyDELETE (req, res, next, userID) {
     });
 };
 
-module.exports.apiKeyGET = function apiKeyGET (req, res, next, userID) {
+module.exports.apiKeyGET = function apiKeyGET(req, res, next, userID) {
   ApiKey.apiKeyGET(userID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -23,7 +23,7 @@ module.exports.apiKeyGET = function apiKeyGET (req, res, next, userID) {
     });
 };
 
-module.exports.apiKeyPOST = function apiKeyPOST (req, res, next, body) {
+module.exports.apiKeyPOST = function apiKeyPOST(req, res, next, body) {
   ApiKey.apiKeyPOST(body)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -33,7 +33,7 @@ module.exports.apiKeyPOST = function apiKeyPOST (req, res, next, body) {
     });
 };
 
-module.exports.apiKeyPUT = function apiKeyPUT (req, res, next, body) {
+module.exports.apiKeyPUT = function apiKeyPUT(req, res, next, body) {
   ApiKey.apiKeyPUT(body)
     .then(function (response) {
       utils.writeJson(res, response);
