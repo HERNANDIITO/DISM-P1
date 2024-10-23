@@ -9,4 +9,7 @@ export class FichajesPage {
 
   constructor() {}
 
+  search(event: any) {
+    console.log(event.detail.value);
+  }
 }

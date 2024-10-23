@@ -15,10 +15,8 @@
 
   <ion-list>
     <ion-item>
-      <ion-label>
-        Programar
-      </ion-label>
-      <ion-button color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
+      <ion-input disabled="{{this.edit}}" value="Programar" ></ion-input>
+      <ion-button (click)="toggleEdit()" color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
       <ion-button color="danger"><ion-icon name="trash"></ion-icon></ion-button>
     </ion-item>
     <ion-item>

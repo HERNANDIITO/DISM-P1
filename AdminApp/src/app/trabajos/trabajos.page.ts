@@ -9,4 +9,14 @@ export class TrabajosPage {
 
   constructor() {}
 
+  edit = true
+
+  toggleEdit() {
+    this.edit = !this.edit
+
+    if ( this.edit ) {
+      console.log("Editar trabajo");
+      
+    }
+  }
 }

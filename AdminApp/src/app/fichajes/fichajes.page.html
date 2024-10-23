@@ -12,4 +12,32 @@
       <ion-title size="large">Fichajes</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-searchbar (ionInput)="search($event)" ></ion-searchbar>
+  <ion-row>
+    <ion-col>
+      <ion-label>Fecha mínima</ion-label>
+      <ion-datetime-button datetime="min-date"></ion-datetime-button>
+    </ion-col>
+    <ion-col>
+      <ion-label>Fecha máxima</ion-label>
+      <ion-datetime-button datetime="max-date"></ion-datetime-button>
+    </ion-col>
+  </ion-row>
+  
+  <ion-list>
+    <app-fichaje></app-fichaje>
+  </ion-list>
 </ion-content>
+
+<ion-modal [keepContentsMounted]="true" >
+  <ng-template>
+    <ion-datetime id="min-date" presentation="date" [preferWheel]="true"></ion-datetime>
+  </ng-template>
+</ion-modal>
+
+<ion-modal [keepContentsMounted]="true" >
+  <ng-template>
+    <ion-datetime id="max-date" presentation="date" [preferWheel]="true"></ion-datetime>
+  </ng-template>
+</ion-modal>

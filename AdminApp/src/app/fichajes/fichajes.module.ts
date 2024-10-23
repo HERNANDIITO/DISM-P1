@@ -6,6 +6,7 @@ import { FichajesPage } from './fichajes.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { FichajesPageRoutingModule } from './fichajes-routing.module';
+import { FichajeComponent } from './fichaje/fichaje.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { FichajesPageRoutingModule } from './fichajes-routing.module';
     ExploreContainerComponentModule,
     FichajesPageRoutingModule
   ],
-  declarations: [FichajesPage]
+  declarations: [FichajesPage, FichajeComponent]
 })
 export class FichajesPageModule {}
