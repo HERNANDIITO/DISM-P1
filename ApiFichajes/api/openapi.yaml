@@ -3,7 +3,7 @@ info:
   title: Sistema fichajes - OpenAPI 3.0
   version: 0.1.0
 servers:
-- url: https://lohaclhost:4200
+- url: http://localhost:8080
 tags:
 - name: usuarios
   description: Servicios relacionados con los usuarios
