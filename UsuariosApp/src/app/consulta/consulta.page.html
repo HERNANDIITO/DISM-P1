@@ -28,12 +28,9 @@
         <section>Hora de salida</section>
       </ion-col>
     </ion-row>
-    <app-registro-component
-      [job]="'Programar'"
-      [inHour]="'14:00'"
-      [outHour]="'20:00'"
-      [location]="'Mi casa'">
-    </app-registro-component>
+    @for (fichaje of fichajes; track $index) {
+      <app-registro-component [fichaje]="fichaje"> </app-registro-component>
+    }
   </ion-grid>
 
 </ion-content>

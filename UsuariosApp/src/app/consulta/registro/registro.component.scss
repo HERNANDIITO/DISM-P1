@@ -1,0 +1,13 @@
+section {
+    white-space: nowrap;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@media screen and ( width < 500 ) {
+    .fichaje {
+        display: flex;
+        flex-flow: column;
+    }
+}

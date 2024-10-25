@@ -16,6 +16,11 @@ export class FichajeService {
 			.pipe(map(res => res));
 	}
 
+  getUserFichajes(id: number) {
+		return this.http.get<Fichaje[]>(`${this.apiRest}` + `getUserFichajes?userID=${id}`)
+			.pipe(map(res => res));
+	}
+
   updateFichaje(fichaje: Fichaje) {
     return this.http.put<Fichaje>(`${this.apiRest}` + `fichajes`, fichaje)
     .pipe(map(res => res));

@@ -16,5 +16,10 @@ export class TrabajoService {
   getTrabajos() {
 		return this.http.get<Trabajo[]>(`${this.apiRest}` + `getWorks`)
 			.pipe(map(res => res));
-	}
+    }
+    
+    getTrabajoByID(id: string) {
+		return this.http.get<Trabajo>(`${this.apiRest}` + `work?workID=${id}`)
+			.pipe(map(res => res));
+  }
 }

@@ -3,6 +3,7 @@ import { Trabajo } from 'src/app/interfaces/trabajo';
 import { NewFichaje } from 'src/app/interfaces/fichaje';
 import { TrabajoService } from 'src/app/services/trabajo.service';
 import { FichajeService } from 'src/app/services/fichaje.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-empezar-trabajo',
@@ -30,10 +31,11 @@ export class EmpezarTrabajoComponent  implements OnInit {
     })
   }
 
-  empezarTrabajo() {
+  async empezarTrabajo() {
 
     if ( this.selected < 0 ) { return; }
 
+    
     const fichaje: NewFichaje = {
       FechaHoraEntrada: new Date().toString(),
       FechaHoraSalida: '',
@@ -43,6 +45,11 @@ export class EmpezarTrabajoComponent  implements OnInit {
       GeolocalizacionLatitud: 0,
       GeolocalizacionLongitud: 0
     }
+    
+    await Geolocation.getCurrentPosition().then( geoPosition => {
+      fichaje.GeolocalizacionLatitud = geoPosition.coords.latitude
+      fichaje.GeolocalizacionLongitud = geoPosition.coords.longitude
+    })
 
     this.fichajeService.empezarFichaje(fichaje).subscribe( res => { window.location.reload() } )
   }

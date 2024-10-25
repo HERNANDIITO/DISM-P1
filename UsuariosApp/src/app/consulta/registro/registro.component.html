@@ -1,42 +1,42 @@
-<ion-row>
-  <ion-col id="job">
+<ion-row class="fichaje">
+  <ion-col id="job-{{fichaje?.IdFichaje}}">
     <ion-icon aira-hidden="true"  name="briefcase"></ion-icon>
-    <section>{{job ? job : "Sin trabajo"}}</section>
+    <section>{{trabajo?.Nombre ? trabajo?.Nombre : "Sin trabajo"}}</section>
   </ion-col>
-  <ion-col id="loc">
+  <ion-col id="loc-{{fichaje?.IdFichaje}}">
     <ion-icon aira-hidden="true"  name="location"></ion-icon>
     <section>{{location ? location : "Sin ubicación"}}</section>
   </ion-col>
-  <ion-col id="hour1">
+  <ion-col id="hour1-{{fichaje?.IdFichaje}}">
     <ion-icon aira-hidden="true"  name="log-in"></ion-icon>
-    <section>{{inHour ? inHour : "Sin hora de entrada"}}</section>
+    <section>{{horaEntrada ? horaEntrada : "Sin hora de entrada"}}</section>
   </ion-col>
-  <ion-col id="hour2">
+  <ion-col id="hour2-{{fichaje?.IdFichaje}}">
     <ion-icon aira-hidden="true"  name="log-out"></ion-icon>
-    <section>{{outHour ? outHour : "Sin hora de salida"}}</section>
+    <section>{{horaSalida ? horaSalida : "Sin hora de salida"}}</section>
   </ion-col>
 </ion-row>
     
-<ion-popover trigger="job" triggerAction="click">
+<ion-popover trigger="job-{{fichaje?.IdFichaje}}" triggerAction="click">
   <ng-template>
-    <ion-content class="ion-padding">Trabajo asignado</ion-content>
+    <ion-content class="ion-padding">{{trabajo?.Nombre ? trabajo?.Nombre : "Sin trabajo"}}</ion-content>
   </ng-template>
 </ion-popover>
 
-<ion-popover trigger="loc" triggerAction="click">
+<ion-popover trigger="loc-{{fichaje?.IdFichaje}}" triggerAction="click">
   <ng-template>
-    <ion-content class="ion-padding">Geolocalización</ion-content>
+    <ion-content class="ion-padding">{{location ? location : "Sin ubicación"}}</ion-content>
   </ng-template>
 </ion-popover>
 
-<ion-popover trigger="hour1" triggerAction="click">
+<ion-popover trigger="hour1-{{fichaje?.IdFichaje}}" triggerAction="click">
   <ng-template>
-    <ion-content class="ion-padding">Hora de entrada</ion-content>
+    <ion-content class="ion-padding">{{horaEntrada ? horaEntrada : "Sin hora de entrada"}}</ion-content>
   </ng-template>
 </ion-popover>
 
-<ion-popover trigger="hour2" triggerAction="click">
+<ion-popover trigger="hour2-{{fichaje?.IdFichaje}}" triggerAction="click">
   <ng-template>
-    <ion-content class="ion-padding">Hora de salida</ion-content>
+    <ion-content class="ion-padding">{{horaSalida ? horaSalida : "Sin hora de salida"}}</ion-content>
   </ng-template>
 </ion-popover>

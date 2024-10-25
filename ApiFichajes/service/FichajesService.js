@@ -116,7 +116,7 @@ exports.getUserFichajesGET = function (userID) {
       if (error) {
         reject({ message: error });
       } else {
-        resolve(results[0] ? results[0] : {});
+        resolve(results);
       }
     });
   });
