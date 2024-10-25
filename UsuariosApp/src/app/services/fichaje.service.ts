@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Fichaje } from '../interfaces/fichaje';
+import { Fichaje, NewFichaje } from '../interfaces/fichaje';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -17,8 +17,13 @@ export class FichajeService {
 	}
 
   updateFichaje(fichaje: Fichaje) {
-    return this.http.put<any>(`${this.apiRest}` + `fichajes`, fichaje)
+    return this.http.put<Fichaje>(`${this.apiRest}` + `fichajes`, fichaje)
     .pipe(map(res => res));
+  }
+
+  empezarFichaje( fichaje: NewFichaje ) {
+    return this.http.post<Fichaje>( `${this.apiRest}` + 'fichajes', fichaje )
+    .pipe(map( res => res ));
   }
   
 

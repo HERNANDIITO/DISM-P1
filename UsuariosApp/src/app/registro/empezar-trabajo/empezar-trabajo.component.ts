@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Trabajo } from 'src/app/interfaces/trabajo';
+import { NewFichaje } from 'src/app/interfaces/fichaje';
+import { TrabajoService } from 'src/app/services/trabajo.service';
+import { FichajeService } from 'src/app/services/fichaje.service';
 
 @Component({
   selector: 'app-empezar-trabajo',
@@ -10,8 +14,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpezarTrabajoComponent  implements OnInit {
 
-  constructor() { }
+  constructor(
+    private trabajoService: TrabajoService,
+    private fichajeService: FichajeService
+  ) { }
 
-  ngOnInit() {}
+  @Input() userID!: number;
+
+  trabajos?: Trabajo[]
+  selected: number = -1;
+
+  ngOnInit() {
+    this.trabajoService.getTrabajos().subscribe( res => {
+      this.trabajos = res;
+    })
+  }
+
+  empezarTrabajo() {
+
+    if ( this.selected < 0 ) { return; }
+
+    const fichaje: NewFichaje = {
+      FechaHoraEntrada: new Date().toString(),
+      FechaHoraSalida: '',
+      HorasTrabajadas: 0,
+      IdTrabajo: this.selected.toString(),
+      IdUsuario: this.userID.toString(),
+      GeolocalizacionLatitud: 0,
+      GeolocalizacionLongitud: 0
+    }
+
+    this.fichajeService.empezarFichaje(fichaje).subscribe( res => { window.location.reload() } )
+  }
 
 }

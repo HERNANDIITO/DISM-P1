@@ -71,15 +71,15 @@ exports.fichajesPOST = function (body) {
 exports.fichajesPUT = function (body) {
   console.log("PUT");
   return new Promise(function (resolve, reject) {
-    connection.query(`UPDATE fichajes SET FechaHoraEntrada='${body.FechaHoraEntrada}', FechaHoraSalida='${body.FechaHoraSalida}', HorasTrabajadas='${body.HorasTrabajadas}', IdTrabajo='${body.IdTrabajo}', IdUsuario='${body.IdUsuario}', GeolocalizacionLatitud='${body.GeolocalizacionLatitud}', GeolocalizacionLongitud='${body.GeolocalizacionLongitud}'`, function(error, results, fields) {
+    connection.query(`UPDATE fichajes SET FechaHoraEntrada='${body.FechaHoraEntrada}', FechaHoraSalida='${body.FechaHoraSalida}', HorasTrabajadas='${body.HorasTrabajadas}', IdTrabajo='${body.IdTrabajo}', IdUsuario='${body.IdUsuario}', GeolocalizacionLatitud='${body.GeolocalizacionLatitud}', GeolocalizacionLongitud='${body.GeolocalizacionLongitud}' WHERE IdFichaje = '${body.IdFichaje}'`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM fichajes WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+        connection.query(`SELECT * FROM fichajes WHERE IdFichaje = '${body.IdFichaje}' LIMIT 1`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0] ? results[0] : {});
+            resolve(results);
           }
         });
       }

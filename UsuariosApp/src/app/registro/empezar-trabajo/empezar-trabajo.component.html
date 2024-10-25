@@ -3,12 +3,12 @@
     Sin trabajo asignado
   </ion-card-title>
   <ion-card-content>
-    <ion-select label="Selecciona el trabajo">
-      <ion-select-option value="prueba1">Programar</ion-select-option>
-      <ion-select-option value="prueba2">Diseñar</ion-select-option>
-      <ion-select-option value="prueba3">Atender a los clientes</ion-select-option>
+    <ion-select (ionChange)="selected = $event.target.value" label="Selecciona el trabajo">
+      @for (trabajo of trabajos; track $index) {
+        <ion-select-option value="{{trabajo.IdTrabajo}}"> {{trabajo.Nombre}} </ion-select-option>
+      }
     </ion-select>
-    <ion-button>
+    <ion-button (click)="empezarTrabajo()" >
       Iniciar trabajo
     </ion-button>
   </ion-card-content>

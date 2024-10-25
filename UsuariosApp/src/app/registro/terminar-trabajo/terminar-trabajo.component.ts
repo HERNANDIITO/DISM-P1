@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Fichaje } from 'src/app/interfaces/fichaje';
 import { FichajeService } from 'src/app/services/fichaje.service';
 
@@ -21,10 +21,14 @@ export class TerminarTrabajoComponent  implements OnInit {
   cerrarFichaje() {
     if (!this.fichaje) { return }
 
-    this.fichaje.FechaHoraSalida = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    this.fichaje.FechaHoraSalida = new Date().toString();
 
-    this.fichajeService.updateFichaje(this.fichaje).subscribe( res => {console.log(res);} )
+    this.fichaje.IdFichaje = this.fichaje.IdFichaje.toString()
+    this.fichaje.IdTrabajo = this.fichaje.IdTrabajo.toString()
+    this.fichaje.IdUsuario = this.fichaje.IdUsuario.toString()
     
+
+    this.fichajeService.updateFichaje(this.fichaje).subscribe( res => { window.location.reload() } )
     
   }
 

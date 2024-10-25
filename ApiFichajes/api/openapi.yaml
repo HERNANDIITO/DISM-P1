@@ -28,7 +28,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -100,7 +100,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -125,7 +125,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -197,7 +197,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -222,7 +222,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -294,7 +294,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -319,7 +319,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -391,7 +391,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -432,7 +432,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -457,7 +457,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Operación realizada con éxito
@@ -492,7 +492,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: string
           example: 10
         nombre:
           type: string
@@ -514,7 +514,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: string
           example: 10
         nombre:
           type: string
@@ -528,7 +528,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: string
           example: 10
         FechaHoraEntrada:
           type: string
@@ -540,10 +540,10 @@ components:
           type: number
           example: 8
         IdTrabajo:
-          type: integer
+          type: string
           example: 1110
         IdUsuario:
-          type: integer
+          type: string
           example: 1001
         GeolocalizacionLatitud:
           type: number
@@ -566,7 +566,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: string
           example: 10
         key:
           type: string
@@ -611,10 +611,10 @@ components:
           type: number
           example: 8
         IdTrabajo:
-          type: integer
+          type: string
           example: 1110
         IdUsuario:
-          type: integer
+          type: string
           example: 1001
         GeolocalizacionLatitud:
           type: number

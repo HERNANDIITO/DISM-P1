@@ -16,7 +16,7 @@
   @if ( working ) {
     <app-terminar-trabajo [fichaje]="lastFichaje"></app-terminar-trabajo>
   } @else {
-    <app-empezar-trabajo></app-empezar-trabajo>
+    <app-empezar-trabajo [userID]="userID"></app-empezar-trabajo>
   }
   
 </ion-content>
