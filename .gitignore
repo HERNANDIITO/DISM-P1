@@ -1,3 +1,4 @@
 
 /ApiFichajes/node_modules/*
 !/ApiFichajes/node_modules/oas3-tools
+*.zip

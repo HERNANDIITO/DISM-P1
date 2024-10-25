@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS Trabajos (
 -- Crear la tabla Fichajes
 CREATE TABLE IF NOT EXISTS Fichajes (
     IdFichaje INT PRIMARY KEY AUTO_INCREMENT,
-    FechaHoraEntrada DATETIME,
-    FechaHoraSalida DATETIME,
+    FechaHoraEntrada VARCHAR(255),
+    FechaHoraSalida VARCHAR(255),
     HorasTrabajadas INT,
     IdTrabajo INT,
     IdUsuario INT,
