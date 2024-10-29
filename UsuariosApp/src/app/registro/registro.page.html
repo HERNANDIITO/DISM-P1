@@ -12,11 +12,28 @@
       <ion-title size="large">Registro de fichaje</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  @if ( working ) {
-    <app-terminar-trabajo [fichaje]="lastFichaje"></app-terminar-trabajo>
-  } @else {
-    <app-empezar-trabajo [userID]="userID"></app-empezar-trabajo>
-  }
   
+  @if ( !userID ) {
+    <ion-card>
+      <ion-card-title>
+        Selección de usuario
+      </ion-card-title>
+      <ion-card-content>
+        <ion-select (ionChange)="userID = $event.target.value; publishUser(); empezarTrabajo()" label="Selecciona el usuario">
+          @for (user of users; track $index) {
+            <ion-select-option value="{{user.IdUsuario}}"> {{user.Nombre}} </ion-select-option>
+          }
+        </ion-select>
+      </ion-card-content>
+    </ion-card>
+  } @else {
+
+    @if ( working ) {
+      <app-terminar-trabajo [fichaje]="lastFichaje" (outputEmitter)="working = false" ></app-terminar-trabajo>
+    } @else {
+      <app-empezar-trabajo [selectedUser]="userID" (outputEmitter)="empezarTrabajo()" ></app-empezar-trabajo>
+    }
+    
+  }
+
 </ion-content>

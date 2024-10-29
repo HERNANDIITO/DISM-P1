@@ -12,7 +12,7 @@ import { TrabajoService } from '../services/trabajo.service';
 export class ConsultaPage implements OnInit {
 
   fichajes: Fichaje[] = []
-  userID = 1
+  userID?: any
 
   constructor(
     private fichajeService: FichajeService,
@@ -22,7 +22,9 @@ export class ConsultaPage implements OnInit {
   ngOnInit(): void {
     if ( !this.userID ) { return; }
 
-    this.fichajeService.getUserFichajes(this.userID).subscribe( res => {
+    this.userID = localStorage.getItem("userID")   
+
+    this.fichajeService.getUserFichajes(this.userID as number).subscribe( res => {
       this.fichajes = res      
     })
   }

@@ -30,6 +30,27 @@ export class FichajeService {
     return this.http.post<Fichaje>( `${this.apiRest}` + 'fichajes', fichaje )
     .pipe(map( res => res ));
   }
+
+  cerrarFichaje( fichaje: Fichaje ) {
+    if (!fichaje) { return }
+
+    fichaje.FechaHoraSalida = new Date().toString();
+
+    fichaje.IdFichaje = fichaje.IdFichaje.toString()
+    fichaje.IdTrabajo = fichaje.IdTrabajo.toString()
+    fichaje.IdUsuario = fichaje.IdUsuario.toString()
+    
+
+    this.updateFichaje(fichaje).subscribe()
+  }
+
+  formatDate(date: Date) {
+    if ( Number.isNaN(date.getDay()) ) { return "Sin completar" }
+    
+    const dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes().toString().length <= 1 ? date.getMinutes().toString()+'0' : date.getMinutes()}`;
+    
+    return dateFormat
+  }
   
 
 }

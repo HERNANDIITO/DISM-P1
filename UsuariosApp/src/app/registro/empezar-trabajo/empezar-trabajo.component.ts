@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Trabajo } from 'src/app/interfaces/trabajo';
 import { NewFichaje } from 'src/app/interfaces/fichaje';
 import { TrabajoService } from 'src/app/services/trabajo.service';
 import { FichajeService } from 'src/app/services/fichaje.service';
 import { Geolocation } from '@capacitor/geolocation';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from 'src/app/interfaces/usuario';
 
 @Component({
   selector: 'app-empezar-trabajo',
@@ -17,13 +19,15 @@ export class EmpezarTrabajoComponent  implements OnInit {
 
   constructor(
     private trabajoService: TrabajoService,
-    private fichajeService: FichajeService
+    private fichajeService: FichajeService,
+    private usuarioService: UsuarioService
   ) { }
 
-  @Input() userID!: number;
-
   trabajos?: Trabajo[]
+  users?: Usuario[]
   selected: number = -1;
+  @Input() selectedUser?: number
+  @Output() outputEmitter = new EventEmitter<number>();  
 
   ngOnInit() {
     this.trabajoService.getTrabajos().subscribe( res => {
@@ -41,7 +45,7 @@ export class EmpezarTrabajoComponent  implements OnInit {
       FechaHoraSalida: '',
       HorasTrabajadas: 0,
       IdTrabajo: this.selected.toString(),
-      IdUsuario: this.userID.toString(),
+      IdUsuario: this.selectedUser!.toString(),
       GeolocalizacionLatitud: 0,
       GeolocalizacionLongitud: 0
     }
@@ -51,7 +55,6 @@ export class EmpezarTrabajoComponent  implements OnInit {
       fichaje.GeolocalizacionLongitud = geoPosition.coords.longitude
     })
 
-    this.fichajeService.empezarFichaje(fichaje).subscribe( res => { window.location.reload() } )
+    this.fichajeService.empezarFichaje(fichaje).subscribe( res => { this.outputEmitter.emit(this.selectedUser); } )
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Fichaje } from 'src/app/interfaces/fichaje';
 import { FichajeService } from 'src/app/services/fichaje.service';
 
@@ -10,26 +10,27 @@ import { FichajeService } from 'src/app/services/fichaje.service';
     '../registro.page.scss'
   ],
 })
-export class TerminarTrabajoComponent  implements OnInit {
+export class TerminarTrabajoComponent implements OnInit {
 
   constructor(private fichajeService: FichajeService) { }
 
   @Input() fichaje?: Fichaje
+  @Output() outputEmitter = new EventEmitter<boolean>()
+  horaSalida?: string
 
-  ngOnInit() {}
+  ngOnInit() {
+    if ( this.fichaje ) {
+      const date = new Date(this.fichaje?.FechaHoraEntrada)
+      this.horaSalida = this.fichajeService.formatDate( date )
+    }
+  }
 
   cerrarFichaje() {
-    if (!this.fichaje) { return }
+    if ( this.fichaje )
+    this.fichajeService.cerrarFichaje(this.fichaje)
+    this.outputEmitter.emit(true)
 
-    this.fichaje.FechaHoraSalida = new Date().toString();
-
-    this.fichaje.IdFichaje = this.fichaje.IdFichaje.toString()
-    this.fichaje.IdTrabajo = this.fichaje.IdTrabajo.toString()
-    this.fichaje.IdUsuario = this.fichaje.IdUsuario.toString()
-    
-
-    this.fichajeService.updateFichaje(this.fichaje).subscribe( res => { window.location.reload() } )
-    
   }
+
 
 }

@@ -38,6 +38,16 @@ module.exports.userGET = function userGET(req, res, next, userID) {
     });
 };
 
+module.exports.getUsers = function getUsers(req, res, next, userID) {
+  Usuarios.getUsers(userID)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.userPOST = function userPOST(req, res, next, body) {
   Usuarios.userPOST(body)
     .then(function (response) {

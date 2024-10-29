@@ -21,6 +21,24 @@ exports.userDELETE = function (userID) {
 };
 
 /**
+ * Eliminar usuario dada su ID
+ *
+ * userID Integer ID del usuario en cuestión
+ * no response value expected for this operation
+ **/
+exports.getUsers = function (userID) {
+  return new Promise(function (resolve, reject) {
+    connection.query(`SELECT * FROM usuarios`, function(error, results, fields) {
+      if (error) {
+        reject({ message: error });
+      } else {
+        resolve(results ? results : []);
+      }
+    });
+  });
+};
+
+/**
  * Recoge un usuario dada la ID
  *
  * userID Integer ID del usuario en cuestión

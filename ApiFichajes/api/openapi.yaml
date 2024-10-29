@@ -486,6 +486,22 @@ paths:
         "500":
           description: Error del servidor
       x-swagger-router-controller: Trabajos
+  /getUsers:
+    get:
+      tags:
+      - usuarios
+      summary: Recoge todos los usuarios disponibles
+      operationId: getUsers
+      responses:
+        "200":
+          description: Operación realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayUsers'
+        "500":
+          description: Error del servidor
+      x-swagger-router-controller: Usuarios
 components:
   schemas:
     User:

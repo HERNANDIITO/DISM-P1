@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FichajeService } from '../services/fichaje.service';
 import { Fichaje } from '../interfaces/fichaje';
+import { UsuarioService } from '../services/usuario.service';
+import { Usuario } from '../interfaces/usuario';
 
 @Component({
   selector: 'app-Registro',
@@ -11,10 +13,24 @@ export class RegistroPage {
 
   lastFichaje?: Fichaje
   working: boolean = false
-  userID: number = 1
+  userID?: number
+  users?: Usuario[]
 
-  constructor(private fichajeService: FichajeService) {
-    this.fichajeService.getLastFichaje(this.userID).subscribe(fichaje => {
+  constructor(private fichajeService: FichajeService, private usuarioService: UsuarioService) {
+    if ( !this.userID ) { 
+      this.usuarioService.getAllUsers().subscribe( res => {
+        this.users = res;
+      })
+    }
+  }
+
+  publishUser() {
+    if ( this.userID )
+    localStorage.setItem( 'userID', this.userID.toString() )
+  }
+
+  empezarTrabajo() {
+    this.fichajeService.getLastFichaje(this.userID!).subscribe(fichaje => {
       this.lastFichaje = fichaje
       const now = new Date();
       const startTime = new Date(this.lastFichaje.FechaHoraEntrada);
@@ -25,12 +41,13 @@ export class RegistroPage {
       if ( hourDiff < 12 && this.lastFichaje.FechaHoraSalida == null || this.lastFichaje.FechaHoraSalida == "" ) {
         this.working = true
       } else {
+        if ( hourDiff > 12 ) { this.fichajeService.cerrarFichaje(this.lastFichaje) }
         this.working = false
       }
 
       console.log("working...", this.working);
       console.log("hourDiff...", hourDiff);
-      
     })
   }
+  
 }

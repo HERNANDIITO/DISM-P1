@@ -4,6 +4,7 @@ import { Trabajo } from 'src/app/interfaces/trabajo';
 import { TrabajoService } from 'src/app/services/trabajo.service';
 import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
+import { FichajeService } from 'src/app/services/fichaje.service';
 
 @Component({
   selector: 'app-registro-component',
@@ -22,15 +23,15 @@ export class RegistroComponent  implements OnInit {
   urlNominatin?: string
   location?: string
   
-  constructor(private trabajoService: TrabajoService, private http: HttpClient) {}
+  constructor(private trabajoService: TrabajoService, private fichajeService: FichajeService, private http: HttpClient) {}
 
   ngOnInit() {
     if ( !this.fichaje ) { return }
 
     this.trabajoService.getTrabajoByID(this.fichaje.IdTrabajo).subscribe( res => { this.trabajo = res } )
 
-    this.horaEntrada = this.formatDate( new Date(this.fichaje.FechaHoraEntrada) )
-    this.horaSalida = this.formatDate( new Date(this.fichaje.FechaHoraSalida) )
+    this.horaEntrada = this.fichajeService.formatDate( new Date(this.fichaje.FechaHoraEntrada) )
+    this.horaSalida = this.fichajeService.formatDate( new Date(this.fichaje.FechaHoraSalida) )
 
         //Obtengo Georeferenciación
         this.urlNominatin = 'https://nominatim.openstreetmap.org/reverse?format=json' + 
@@ -42,13 +43,6 @@ export class RegistroComponent  implements OnInit {
           this.location = data.display_name;
         })
 
-  }
-
-  formatDate(date: Date) {
-    if ( Number.isNaN(date.getDay()) ) { return "Sin completar" }
-    
-    const dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes().toString().length <= 1 ? date.getMinutes().toString()+'0' : date.getMinutes()}`;
-    return dateFormat
   }
 
 }

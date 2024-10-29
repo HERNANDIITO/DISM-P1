@@ -9,11 +9,11 @@
   </ion-col>
   <ion-col id="hour1-{{fichaje?.IdFichaje}}">
     <ion-icon aira-hidden="true"  name="log-in"></ion-icon>
-    <section>{{horaEntrada ? horaEntrada : "Sin hora de entrada"}}</section>
+    <section>{{horaEntrada ? horaEntrada.split("|")[0] : "Sin hora de entrada"}}</section>
   </ion-col>
   <ion-col id="hour2-{{fichaje?.IdFichaje}}">
     <ion-icon aira-hidden="true"  name="log-out"></ion-icon>
-    <section>{{horaSalida ? horaSalida : "Sin hora de salida"}}</section>
+    <section>{{horaSalida ? horaSalida.split("|")[0] : "Sin hora de salida"}}</section>
   </ion-col>
 </ion-row>
     
