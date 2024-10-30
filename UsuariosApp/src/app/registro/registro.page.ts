@@ -17,6 +17,9 @@ export class RegistroPage {
   users?: Usuario[]
 
   constructor(private fichajeService: FichajeService, private usuarioService: UsuarioService) {
+
+    this.userID = JSON.parse(sessionStorage.getItem("userID")!)
+
     if ( !this.userID ) { 
       this.usuarioService.getAllUsers().subscribe( res => {
         this.users = res;
@@ -26,7 +29,7 @@ export class RegistroPage {
 
   publishUser() {
     if ( this.userID )
-    localStorage.setItem( 'userID', this.userID.toString() )
+    sessionStorage.setItem( 'userID', this.userID.toString() )
   }
 
   empezarTrabajo() {

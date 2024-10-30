@@ -13,24 +13,42 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid>
-    <ion-row class="header-row">
-      <ion-col>
-        <section>Trabajo asignado</section>
-      </ion-col>
-      <ion-col>
-        <section>Ubicación</section>
-      </ion-col>
-      <ion-col>
-        <section>Hora de entrada</section>
-      </ion-col>
-      <ion-col>
-        <section>Hora de salida</section>
-      </ion-col>
-    </ion-row>
-    @for (fichaje of fichajes; track $index) {
-      <app-registro-component [fichaje]="fichaje"> </app-registro-component>
+  @if ( userID != null ) {
+
+    @if ( fichajes.length > 0 ) {
+
+      <ion-grid>
+        <ion-row class="header-row">
+          <ion-col>
+            <section>Trabajo asignado</section>
+          </ion-col>
+          <ion-col>
+            <section>Ubicación</section>
+          </ion-col>
+          <ion-col>
+            <section>Hora de entrada</section>
+          </ion-col>
+          <ion-col>
+            <section>Hora de salida</section>
+          </ion-col>
+        </ion-row>
+
+          @for (fichaje of fichajes; track $index) {
+            <app-registro-component [fichaje]="fichaje"> </app-registro-component>
+          }
+
+        </ion-grid>
+
+    } @else {
+
+      <p>Sin fichajes</p>
+
     }
-  </ion-grid>
+
+  } @else {
+
+    <p>Seleccione un usuario</p>
+
+  }
 
 </ion-content>

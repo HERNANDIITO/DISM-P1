@@ -47,7 +47,7 @@ export class FichajeService {
   formatDate(date: Date) {
     if ( Number.isNaN(date.getDay()) ) { return "Sin completar" }
     
-    const dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes().toString().length <= 1 ? date.getMinutes().toString()+'0' : date.getMinutes()}`;
+    const dateFormat = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes().toString().length <= 1 ? date.getMinutes().toString()+'0' : date.getMinutes()}`;
     
     return dateFormat
   }

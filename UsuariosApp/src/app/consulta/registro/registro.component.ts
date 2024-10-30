@@ -30,19 +30,16 @@ export class RegistroComponent  implements OnInit {
 
     this.trabajoService.getTrabajoByID(this.fichaje.IdTrabajo).subscribe( res => { this.trabajo = res } )
 
-    this.horaEntrada = this.fichajeService.formatDate( new Date(this.fichaje.FechaHoraEntrada) )
-    this.horaSalida = this.fichajeService.formatDate( new Date(this.fichaje.FechaHoraSalida) )
+    this.horaEntrada = this.fichajeService.formatDate( new Date( this.fichaje.FechaHoraEntrada ) )
+    this.horaSalida  = this.fichajeService.formatDate( new Date( this.fichaje.FechaHoraSalida  ) )
 
-        //Obtengo Georeferenciación
-        this.urlNominatin = 'https://nominatim.openstreetmap.org/reverse?format=json' + 
-        '&lat=' + this.fichaje.GeolocalizacionLatitud +
-        '&lon=' + this.fichaje.GeolocalizacionLongitud +
-        '&addressdetails=1';
-        
-        this.http.get(this.urlNominatin).subscribe((data: any) => {
-          this.location = data.display_name;
-        })
-
+    this.urlNominatin = 'https://nominatim.openstreetmap.org/reverse?format=json' + 
+    '&lat=' + this.fichaje.GeolocalizacionLatitud +
+    '&lon=' + this.fichaje.GeolocalizacionLongitud +
+    '&addressdetails=1';
+    
+    this.http.get(this.urlNominatin).subscribe((data: any) => {
+      this.location = data.display_name;
+    })
   }
-
 }
