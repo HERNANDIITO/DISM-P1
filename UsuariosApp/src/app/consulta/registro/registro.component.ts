@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Fichaje } from 'src/app/interfaces/fichaje';
 import { Trabajo } from 'src/app/interfaces/trabajo';
 import { TrabajoService } from 'src/app/services/trabajo.service';
-import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { FichajeService } from 'src/app/services/fichaje.service';
 

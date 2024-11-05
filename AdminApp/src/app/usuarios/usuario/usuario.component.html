@@ -1,6 +1,6 @@
 <ion-item id="user-details" button detail="true">
   <ion-icon name="person-circle"></ion-icon>
-  <ion-label>{{this.nombre}}</ion-label>
+  <ion-label>{{this.usuario?.Nombre}}</ion-label>
   <ion-button color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
   <ion-button color="danger"><ion-icon name="trash"></ion-icon></ion-button>
 </ion-item>
@@ -13,14 +13,17 @@
         <ion-buttons slot="end">
           <ion-button (click)="cancel()"><ion-icon name="close"></ion-icon></ion-button>
         </ion-buttons>
-        <ion-title>{{this.nombre}}</ion-title>
+        <ion-title>{{this.usuario?.Nombre}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
       <ion-item>
-        
-        <ion-label>Trabajo:</ion-label>
-        <span>{{this.trabajo ? this.trabajo : "Sin trabajo"}}</span>    
+        <ion-label>Nombre:</ion-label>
+        <span>{{this.usuario?.Nombre}}</span>    
+      </ion-item>
+      <ion-item>
+        <ion-label>Usuario:</ion-label>
+        <span>{{this.usuario?.Usuario}}</span>    
       </ion-item>
     </ion-content>
   </ng-template>

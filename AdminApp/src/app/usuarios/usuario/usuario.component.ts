@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
+import { Usuario } from 'src/app/interfaces/usuario';
 
 @Component({
   selector: 'app-usuario',
@@ -8,8 +9,7 @@ import { IonModal } from '@ionic/angular';
 })
 export class UsuarioComponent  implements OnInit {
 
-  @Input() nombre?: string;
-  @Input() trabajo?: string;
+  @Input() usuario?: Usuario;
   constructor() { }
 
   ngOnInit() {}

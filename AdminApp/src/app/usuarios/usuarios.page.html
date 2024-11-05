@@ -14,9 +14,12 @@
   </ion-header>
 
   <ion-list>
-    <app-usuario [nombre]="'Pablo'" ></app-usuario>
+    @for (user of users; track $index) {
+      <app-usuario [usuario]="user" ></app-usuario>
+    }
     <ion-button id="add-user" class="add-button" color="success"><ion-icon name="add-circle"></ion-icon></ion-button>
   </ion-list>
+
 </ion-content>
 
 <ion-modal trigger="add-user" [keepContentsMounted]="true">
@@ -36,26 +39,15 @@
         <ion-input label="Nombre:"></ion-input>   
       </ion-item>
       <ion-item>
-        <ion-select label="Trabajo:">
-          <ion-select-option value="prueba1">Programar</ion-select-option>
-          <ion-select-option value="prueba2">Diseñar</ion-select-option>
-          <ion-select-option value="prueba3">Atender a los clientes</ion-select-option>
-        </ion-select> 
+        <ion-input label="Usuario:"></ion-input>   
       </ion-item>
       <ion-item>
-        <ion-row>
-          <ion-col>
-            <ion-label>Fecha de nacimiento:</ion-label>
-          </ion-col>
-          <ion-col>
-            <ion-datetime id="date" presentation="date" [preferWheel]="true"></ion-datetime>
-          </ion-col>
-        </ion-row>
+        <ion-input label="Clave:"></ion-input>   
       </ion-item>
       <ion-item>
         <div class="button-wrapper">
-          <ion-button color="success"><ion-icon name="checkmark"></ion-icon> Aceptar</ion-button>
-          <ion-button color="danger"><ion-icon name="close"></ion-icon> Cancelar</ion-button>
+          <ion-button (click)="sendUser()" color="success"><ion-icon name="checkmark"></ion-icon> Aceptar</ion-button>
+          <ion-button (click)="cancel()" color="danger"><ion-icon name="close"></ion-icon> Cancelar</ion-button>
         </div>
       </ion-item>
     </ion-content>
