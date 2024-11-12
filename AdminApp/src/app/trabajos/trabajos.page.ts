@@ -1,22 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NewTrabajo, Trabajo } from '../interfaces/trabajo';
+import { TrabajoService } from '../services/trabajo.service';
 
 @Component({
   selector: 'app-trabajos',
   templateUrl: 'trabajos.page.html',
   styleUrls: ['trabajos.page.scss']
 })
-export class TrabajosPage {
 
-  constructor() {}
+export class TrabajosPage implements OnInit {
 
-  edit = true
+  trabajos?: Trabajo[];
+  jobName: string = ""
 
-  toggleEdit() {
-    this.edit = !this.edit
+  constructor(private trabajoService: TrabajoService) {}
 
-    if ( this.edit ) {
-      console.log("Editar trabajo");
-      
+
+  ngOnInit(): void {
+    this.getTrabajos();
+  }
+
+  getTrabajos() {
+    this.trabajoService.getTrabajos().subscribe(data => {
+      this.trabajos = data;
+    })
+  }
+
+  sendJob() {
+    if ( this.jobName == "" ) { return }
+
+    const newJob: NewTrabajo = {
+      Nombre: this.jobName
     }
+
+    this.trabajoService.addJob(newJob).subscribe( data => {
+      this.getTrabajos();      
+    })
   }
 }

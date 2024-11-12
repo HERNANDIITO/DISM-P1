@@ -64,7 +64,7 @@ exports.userGET = function (userID) {
  **/
 exports.userPOST = function (body) {
   return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO usuarios (Nombre, Usuario, Clave) VALUES ('${body.nombre}', '${body.usuario}', '${body.clave}')`, function(error, results, fields) {
+    connection.query(`INSERT INTO usuarios (Nombre, Usuario, Clave) VALUES ('${body.Nombre}', '${body.Usuario}', '${body.Clave}')`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
@@ -88,15 +88,19 @@ exports.userPOST = function (body) {
  **/
 exports.userPUT = function (body) {
   return new Promise(function (resolve, reject) {
-    connection.query(`UPDATE usuarios SET Nombre='${body.nombre}', Usuario='${body.usuario}', Clave='${body.clave}' WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+    connection.query(`UPDATE usuarios SET Nombre='${body.Nombre}', Usuario='${body.Usuario}', Clave='${body.Clave}' WHERE IdUsuario = '${body.IdUsuario}'`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM usuarios WHERE IdUsuario = '${body.id}'`, function(error, results, fields) {
+        console.log(body);
+        
+        console.log(results);
+        
+        connection.query(`SELECT * FROM usuarios WHERE IdUsuario = '${body.IdUsuario}' LIMIT 1`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0] ? results[0] : {});
+            resolve(results[0]);
           }
         });
       }

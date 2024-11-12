@@ -6,6 +6,7 @@ import { TrabajosPage } from './trabajos.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { TrabajosPageRoutingModule } from './trabajos-routing.module';
+import { TrabajoComponent } from './trabajo/trabajo.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { TrabajosPageRoutingModule } from './trabajos-routing.module';
     ExploreContainerComponentModule,
     TrabajosPageRoutingModule
   ],
-  declarations: [TrabajosPage]
+  declarations: [TrabajosPage, TrabajoComponent]
 })
 export class TrabajosPageModule {}

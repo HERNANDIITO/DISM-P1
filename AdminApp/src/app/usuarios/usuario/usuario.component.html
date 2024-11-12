@@ -1,19 +1,18 @@
-<ion-item id="user-details" button detail="true">
+<ion-item button>
   <ion-icon name="person-circle"></ion-icon>
-  <ion-label>{{this.usuario?.Nombre}}</ion-label>
-  <ion-button color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
-  <ion-button color="danger"><ion-icon name="trash"></ion-icon></ion-button>
+  <ion-label id="user-details-{{this.usuario?.IdUsuario}}">{{this.usuario?.Nombre}}</ion-label>
+  <ion-button id="user-modify-{{this.usuario?.IdUsuario}}" color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
+  <ion-button id="user-delete-{{this.usuario?.IdUsuario}}" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
 </ion-item>
 
-
-<ion-modal trigger="user-details">
+<ion-modal #details trigger="user-details-{{this.usuario?.IdUsuario}}">
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="end">
-          <ion-button (click)="cancel()"><ion-icon name="close"></ion-icon></ion-button>
+          <ion-button (click)="cancel(this.detailsModal)"><ion-icon name="close"></ion-icon></ion-button>
         </ion-buttons>
-        <ion-title>{{this.usuario?.Nombre}}</ion-title>
+        <ion-title>Detalles de usuario</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
@@ -25,6 +24,60 @@
         <ion-label>Usuario:</ion-label>
         <span>{{this.usuario?.Usuario}}</span>    
       </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal #modify trigger="user-modify-{{this.usuario?.IdUsuario}}">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="cancel(this.modifyModal)"><ion-icon name="close"></ion-icon></ion-button>
+        </ion-buttons>
+        <ion-title>Editar usuario</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label >Editar nombre:</ion-label>
+        <ion-input [(ngModel)]="nameInput" id="nameInput" value="{{this.usuario?.Nombre}}" ></ion-input>    
+      </ion-item>
+      <ion-item>
+        <ion-label>Usuario:</ion-label>
+        <ion-input [(ngModel)]="userInput" id="userInput" value="{{this.usuario?.Usuario}}" ></ion-input>    
+      </ion-item>
+      <div class="button-wrapper">
+        <ion-button (click)="modifyUser()" color="success"><ion-icon name="checkmark"></ion-icon> Aceptar</ion-button>
+        <ion-button (click)="cancel(this.modifyModal)" color="danger"><ion-icon name="close"></ion-icon> Cancelar</ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal #delete trigger="user-delete-{{this.usuario?.IdUsuario}}">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="cancel(this.deleteModal)"><ion-icon name="close"></ion-icon></ion-button>
+        </ion-buttons>
+        <ion-title>Eliminar usuario</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label>Eliminar Nombre:</ion-label>
+        <span>{{this.usuario?.Nombre}}</span>    
+      </ion-item>
+      <ion-item>
+        <ion-label>Usuario:</ion-label>
+        <span>{{this.usuario?.Usuario}}</span>    
+      </ion-item>
+      <div class="button-wrapper">
+        <ion-button (click)="deleteUser()" color="success"><ion-icon name="checkmark"></ion-icon> Aceptar</ion-button>
+        <ion-button (click)="cancel(this.deleteModal)" color="danger"><ion-icon name="close"></ion-icon> Cancelar</ion-button>
+      </div>
     </ion-content>
   </ng-template>
 </ion-modal>

@@ -63,15 +63,15 @@ exports.workGET = function (workID) {
  **/
 exports.workPOST = function (body) {
   return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO trabajos (Nombre) VALUES ('${body.nombre}')`, function(error, results, fields) {
+    connection.query(`INSERT INTO trabajos (Nombre) VALUES ('${body.Nombre}')`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM trabajos WHERE IdTrabajo = '${results.insertId}'`, function(error, results, fields) {
+        connection.query(`SELECT * FROM trabajos WHERE IdTrabajo = '${results.insertId}' LIMIT 1`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0] ? results[0] : {});
+            resolve(results[0]);
           }
         });
       }
@@ -87,15 +87,15 @@ exports.workPOST = function (body) {
  **/
 exports.workPUT = function (body) {
   return new Promise(function (resolve, reject) {
-    connection.query(`UPDATE trabajos SET Nombre='${body.nombre}' WHERE IdTrabajo = '${body.id}'`, function(error, results, fields) {
+    connection.query(`UPDATE trabajos SET Nombre='${body.Nombre}' WHERE IdTrabajo = '${body.IdTrabajo}'`, function(error, results, fields) {
       if (error) {
         reject({ message: error });
       } else {
-        connection.query(`SELECT * FROM trabajos WHERE IdTrabajo = '${body.id}'`, function(error, results, fields) {
+        connection.query(`SELECT * FROM trabajos WHERE IdTrabajo = '${body.IdTrabajo}' LIMIT 1`, function(error, results, fields) {
           if (error) {
             reject({ message: error });
           } else {
-            resolve(results[0] ? results[0] : {});
+            resolve(results[0]);
           }
         });
       }

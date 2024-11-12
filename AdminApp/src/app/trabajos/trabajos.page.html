@@ -14,14 +14,13 @@
   </ion-header>
 
   <ion-list>
+    @for (trabajo of trabajos; track $index) {
+      <app-trabajo  (updateJobs)="getTrabajos()" [trabajo]="trabajo" ></app-trabajo>
+    }
+
     <ion-item>
-      <ion-input disabled="{{this.edit}}" value="Programar" ></ion-input>
-      <ion-button (click)="toggleEdit()" color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
-      <ion-button color="danger"><ion-icon name="trash"></ion-icon></ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-input label="Añadir trabajo:"></ion-input>
-      <ion-button color="success" > <ion-icon name="add-circle"></ion-icon>  Añadir </ion-button>
+      <ion-input [(ngModel)]="jobName" label="Añadir trabajo:"></ion-input>
+      <ion-button (click)="sendJob()" color="success" > <ion-icon name="add-circle"></ion-icon>  Añadir </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,0 +1,5 @@
+<ion-item>
+  <ion-input [(ngModel)]="trabajoNombre" disabled="{{this.edit}}" value="{{trabajo?.Nombre}}" ></ion-input>
+  <ion-button (click)="toggleEdit()" color="warning"><ion-icon name="pencil"></ion-icon></ion-button>
+  <ion-button (click)="deleteJob()" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
+</ion-item>

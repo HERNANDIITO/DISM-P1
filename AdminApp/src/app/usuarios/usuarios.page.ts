@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { UsuarioService } from '../services/usuario.service';
-import { Usuario } from '../interfaces/usuario';
+import { NewUsuario, Usuario } from '../interfaces/usuario';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,6 +11,10 @@ import { Usuario } from '../interfaces/usuario';
 export class UsuariosPage implements OnInit {
 
   constructor(private usuarioService: UsuarioService) {}
+
+  userInput: string = ""
+  nameInput: string = ""
+  claveInput: string = ""
 
 
   ngOnInit(): void {
@@ -23,8 +27,15 @@ export class UsuariosPage implements OnInit {
   cancel() {this.modal?.dismiss(null, 'cancel');}
 
   sendUser() {
-    this.usuarioService.getAllUsers().subscribe( res => {
-      this.users = res;
+    const newUsu: NewUsuario = {
+      Nombre: this.nameInput,
+      Usuario: this.userInput,
+      Clave: this.claveInput
+    }
+
+    this.usuarioService.postUser(newUsu).subscribe( data => {
+      this.getUsers()
+      this.cancel()
     })
   }
 
