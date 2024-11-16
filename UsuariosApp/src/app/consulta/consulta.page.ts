@@ -22,7 +22,15 @@ export class ConsultaPage implements OnInit {
     this.userID = JSON.parse(sessionStorage.getItem("userID")!)
     
     this.fichajeService.getUserFichajes(this.userID).subscribe( res => {
-      this.fichajes = res      
+      this.fichajes = res.filter(fichaje => {
+        const now = new Date();
+        const fichajeDate = new Date(fichaje.FechaHoraEntrada);
+        const hourDiff = (now.getTime() - fichajeDate.getTime()) / 1000 / 60 / 60
+
+        console.log(hourDiff);
+        
+        return !((Math.abs(hourDiff)) > 24);
+      })
     })
   }
 
