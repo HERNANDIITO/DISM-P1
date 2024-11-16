@@ -27,8 +27,6 @@ export class ConsultaPage implements OnInit {
         const fichajeDate = new Date(fichaje.FechaHoraEntrada);
         const hourDiff = (now.getTime() - fichajeDate.getTime()) / 1000 / 60 / 60
 
-        console.log(hourDiff);
-        
         return !((Math.abs(hourDiff)) > 24);
       })
     })
