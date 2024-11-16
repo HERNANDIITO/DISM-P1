@@ -14,8 +14,10 @@
   </ion-header>
 
   <ion-list>
-    @for (user of users; track $index) {
-      <app-usuario (updateUsers)="getUsers()" [usuario]="user" ></app-usuario>
+    @if ( users && users.length > 0 ) {
+      @for (user of users; track $index) {
+        <app-usuario (updateUsers)="getUsers()" [usuario]="user" ></app-usuario>
+      }
     }
     <ion-button id="add-user" class="add-button" color="success"><ion-icon name="add-circle"></ion-icon></ion-button>
   </ion-list>

@@ -14,17 +14,16 @@ export class ConsultaPage implements OnInit {
 
   constructor( private fichajeService: FichajeService ) {}
 
-  ngOnInit(): void {
-    console.log("userID", this.userID);
-    console.log("fichajes", this.fichajes.length);
-    
+  ngOnInit() {
+    this.reloadFichajes();
+  }
+
+  reloadFichajes() {
     this.userID = JSON.parse(sessionStorage.getItem("userID")!)
     
     this.fichajeService.getUserFichajes(this.userID).subscribe( res => {
       this.fichajes = res      
     })
-
-
   }
 
 }

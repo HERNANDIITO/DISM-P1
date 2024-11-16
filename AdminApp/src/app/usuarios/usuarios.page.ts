@@ -22,7 +22,7 @@ export class UsuariosPage implements OnInit {
   }
 
   @ViewChild(IonModal) modal?: IonModal;
-  users: Usuario[] = [];
+  users?: Usuario[];
 
   cancel() {this.modal?.dismiss(null, 'cancel');}
 

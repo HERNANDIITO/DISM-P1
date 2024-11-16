@@ -16,6 +16,11 @@ export class FichajeService {
 			.pipe(map(res => res));
 	}
 
+  getFichajes() {
+		return this.http.get<Fichaje[]>(`${this.apiRest}` + `getFichajes`)
+			.pipe(map(res => res));
+	}
+
   getUserFichajes(id: number) {
 		return this.http.get<Fichaje[]>(`${this.apiRest}` + `getUserFichajes?userID=${id}`)
 			.pipe(map(res => res));
@@ -51,6 +56,8 @@ export class FichajeService {
     
     return dateFormat
   }
+
+
   
 
 }

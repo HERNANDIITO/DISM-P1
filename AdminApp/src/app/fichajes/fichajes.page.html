@@ -13,7 +13,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-searchbar (ionInput)="search($event)" ></ion-searchbar>
+  <ion-searchbar (ionInput)="changeTextFilter($event)" ></ion-searchbar>
   <ion-row>
     <ion-col>
       <ion-label>Fecha mínima</ion-label>
@@ -26,18 +26,24 @@
   </ion-row>
   
   <ion-list>
-    <app-fichaje></app-fichaje>
+    @if ( fichajesFiltrados && fichajesFiltrados.length > 0 ) {
+      @for (fichaje of fichajesFiltrados; track fichaje.IdFichaje) {
+        <app-fichaje [fichaje]="fichaje" ></app-fichaje>
+      }
+    } @else {
+      <p class="text-center">Todavía no hay fichajes</p>
+    }
   </ion-list>
 </ion-content>
 
 <ion-modal [keepContentsMounted]="true" >
   <ng-template>
-    <ion-datetime id="min-date" presentation="date" [preferWheel]="true"></ion-datetime>
+    <ion-datetime (ionChange)="changeMinDate($event)" id="min-date" presentation="date" [preferWheel]="true"></ion-datetime>
   </ng-template>
 </ion-modal>
 
 <ion-modal [keepContentsMounted]="true" >
   <ng-template>
-    <ion-datetime id="max-date" presentation="date" [preferWheel]="true"></ion-datetime>
+    <ion-datetime (ionChange)="changeMaxDate($event)" id="max-date" presentation="date" [preferWheel]="true"></ion-datetime>
   </ng-template>
 </ion-modal>

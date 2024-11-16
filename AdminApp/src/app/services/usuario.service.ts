@@ -15,6 +15,11 @@ export class UsuarioService {
     .pipe(map(res => res));
   }
 
+  getUserByID(userID: string) {
+    return this.http.get<Usuario>(`${this.apiRest}/user?userID=${userID}`)
+    .pipe(map(res => res));
+  }
+
   modifyUser(user: Usuario) {
     return this.http.put<Usuario>(`${this.apiRest}/user`, user)
     .pipe(map(res => res))
@@ -25,7 +30,7 @@ export class UsuarioService {
     .pipe(map(res => res))
   }
 
-  deleteUser(userID: number) {
+  deleteUser(userID: string) {
     return this.http.delete<any>(`${this.apiRest}/user?userID=${userID}`)
     .pipe(map(res => res))
   }

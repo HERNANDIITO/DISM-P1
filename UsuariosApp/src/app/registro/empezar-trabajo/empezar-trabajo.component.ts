@@ -38,7 +38,6 @@ export class EmpezarTrabajoComponent  implements OnInit {
   async empezarTrabajo() {
 
     if ( this.selected < 0 ) { return; }
-
     
     const fichaje: NewFichaje = {
       FechaHoraEntrada: new Date().toString(),
@@ -55,6 +54,9 @@ export class EmpezarTrabajoComponent  implements OnInit {
       fichaje.GeolocalizacionLongitud = geoPosition.coords.longitude
     })
 
-    this.fichajeService.empezarFichaje(fichaje).subscribe( res => { this.outputEmitter.emit(this.selectedUser); } )
+    this.fichajeService.empezarFichaje(fichaje).subscribe( res => {
+      console.log(res);
+      this.outputEmitter.emit();
+    } )
   }
 }
