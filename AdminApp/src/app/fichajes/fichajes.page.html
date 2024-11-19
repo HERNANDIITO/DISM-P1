@@ -38,7 +38,7 @@
 
 <ion-modal [keepContentsMounted]="true" >
   <ng-template>
-    <ion-datetime (ionChange)="changeMinDate($event)" id="min-date" presentation="date" [preferWheel]="true"></ion-datetime>
+    <ion-datetime value="1900-01-01T00:00:00" (ionChange)="changeMinDate($event)" id="min-date" presentation="date" [preferWheel]="true"></ion-datetime>
   </ng-template>
 </ion-modal>
 

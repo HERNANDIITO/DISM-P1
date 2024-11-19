@@ -24,7 +24,7 @@ export class FichajesPage implements OnInit {
 
   textFilter: string = "";
   maxDate: Date = new Date();
-  minDate: Date = new Date("01-01-1970");
+  minDate: Date = new Date("01-01-1900");
 
   ngOnInit(): void {
     this.fichajeService.getFichajes().subscribe( data => {
