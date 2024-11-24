@@ -1,5 +1,5 @@
-#
-# Sistema Fichajes - UserApp
+
+# Sistema Fichajes
 
 ## Introducción
 Este es una de las caras `client-side` de esta aplicación.
@@ -19,9 +19,16 @@ Para que la aplicación funcione necesitamos que el servidor esté en marcha. Pa
 5. Ahora deberemos abrir el **Uniform Server** y activar el servidor SQL
 4. Después escribir el siguiente comando: `npm start` para arrancar el servidor.
 
-### Puesta en marcha del cliente
+### Puesta en marcha del cliente (User App)
 
 1. Una vez hecho esto necesitaremos descargar el **UserApp**..
+2. Descargaremos Ionic usando: `npm install -g @ionic/cli`
+3. Ahora, desde dentro del directorio escribiremos `npm i` para instalar las dependencias.
+4. Por último, para ejecutar el cliente, usaremos: `ionic serve`
+
+### Puesta en marcha del cliente (Admin App)
+
+1. Una vez hecho esto necesitaremos descargar el **AdminApp**..
 2. Descargaremos Ionic usando: `npm install -g @ionic/cli`
 3. Ahora, desde dentro del directorio escribiremos `npm i` para instalar las dependencias.
 4. Por último, para ejecutar el cliente, usaremos: `ionic serve`
