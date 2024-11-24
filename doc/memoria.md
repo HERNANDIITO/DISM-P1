@@ -1,9 +1,6 @@
 
 # Sistema Fichajes
 
-## Introducción
-Este es una de las caras `client-side` de esta aplicación.
-
 ## Puesta en marcha
 
 ### Prerrequisitos
